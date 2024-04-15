@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
+import { Route,Routes,Link } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import './FontAwesome/css/all.min.css';
+import Homepage from './components/Homepage';
+import { useFirebase } from './context/FirebaseContext';
 function App() {
+  const firebase=useFirebase();
+  console.log(firebase);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="row justify-content-center align-items-center">
+     <Routes>
+      <Route exact path='/' Component={Login}/>
+      <Route path='/Register' Component={Register}/>
+      <Route path='/Homepage/*' Component={Homepage}/>
+      {/* add a trailing start if there are nested routes just like above*/}
+     </Routes>
     </div>
   );
 }
